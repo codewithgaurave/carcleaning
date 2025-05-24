@@ -1,906 +1,496 @@
 <!DOCTYPE html>
 <html lang="en">
-<head>
-    <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
     <title>Car-O - Professional Car Cleaning Services</title>
     <style>
-        * {
-            margin: 0;
-            padding: 0;
-            box-sizing: border-box;
+      * {
+        margin: 0;
+        padding: 0;
+        box-sizing: border-box;
+      }
+
+      body {
+        font-family: "Arial", sans-serif;
+        line-height: 1.6;
+        color: #333;
+        background-color: #f8f9fa;
+      }
+
+      /* Navbar Styles */
+      .navbar {
+        background: rgb(200, 173, 123);
+        backdrop-filter: blur(10px);
+        padding: 1rem 0;
+        position: fixed;
+        width: 100%;
+        top: 0;
+        z-index: 1000;
+        box-shadow: 0 2px 20px rgba(0, 0, 0, 0.1);
+      }
+
+      .nav-container {
+        max-width: 1200px;
+        margin: 0 auto;
+        display: flex;
+        justify-content: space-between;
+        align-items: center;
+        padding: 0 2rem;
+      }
+
+      .logo {
+        font-size: 1.8rem;
+        font-weight: bold;
+        color: white;
+        font-weight: bold;
+        text-decoration: none;
+        display: flex;
+        align-items: center;
+        gap: 0.5rem;
+      }
+
+      .logo::after {
+        content: "🚗";
+        font-size: 2rem;
+      }
+
+      .nav-menu {
+        display: flex;
+        list-style: none;
+        gap: 2rem;
+      }
+
+      .nav-menu a {
+        text-decoration: none;
+        color: #333;
+        font-weight: 500;
+        transition: color 0.3s ease;
+        cursor: pointer;
+        position: relative;
+      }
+
+      .nav-menu a:hover {
+        color: #fdfdfd;
+      }
+
+      .nav-menu a.active {
+        color: #fbfbfb;
+        font-weight: 600;
+      }
+
+      .nav-menu a:hover::after {
+        width: 100%;
+      }
+
+      .nav-menu a::after {
+        content: "";
+        position: absolute;
+        width: 0;
+        height: 2px;
+        bottom: -5px;
+        left: 0;
+        background: rgb(186, 128, 19);
+        transition: width 0.3s ease;
+      }
+
+      .hamburger {
+        display: none;
+        flex-direction: column;
+        cursor: pointer;
+        transition: transform 0.3s ease;
+      }
+
+      .hamburger:hover {
+        transform: scale(1.1);
+      }
+
+      .hamburger span {
+        width: 25px;
+        height: 3px;
+        background: #333;
+        margin: 3px 0;
+        transition: 0.3s;
+        border-radius: 2px;
+      }
+
+      .hamburger.active span:nth-child(1) {
+        transform: rotate(-45deg) translate(-5px, 6px);
+      }
+
+      .hamburger.active span:nth-child(2) {
+        opacity: 0;
+      }
+
+      .hamburger.active span:nth-child(3) {
+        transform: rotate(45deg) translate(-5px, -6px);
+      }
+
+      /* Hero Section */
+      .hero {
+        margin-top: 83px;
+        position: relative;
+        width: 100%;
+        height: calc(120vh - 83px); /* Full viewport height minus navbar */
+        min-height: 500px; /* Minimum height */
+        max-height: 1200px; /* Maximum height */
+      }
+
+      .hero .heroImg {
+        height: 100%;
+        width: 100%;
+      }
+
+      .hero .heroImg img {
+        width: 100%;
+        height: 100%;
+        object-fit: cover;
+        object-position: center;
+      }
+
+      /* Responsive Design */
+      @media (max-width: 1024px) {
+        .hero {
+          height: 80vh;
+          min-height: 400px;
         }
 
-        body {
-            font-family: 'Arial', sans-serif;
-            line-height: 1.6;
-            color: #333;
-            background-color: #f8f9fa;
+        .hero .heroImg img {
+          object-fit: contain;
+          object-position: top;
         }
+      }
 
-        /* Navbar Styles */
-        .navbar {
-            background: rgba(255, 255, 255, 0.95);
-            backdrop-filter: blur(10px);
-            padding: 1rem 0;
-            position: fixed;
-            width: 100%;
-            top: 0;
-            z-index: 1000;
-            box-shadow: 0 2px 20px rgba(0, 0, 0, 0.1);
-        }
-
-        .nav-container {
-            max-width: 1200px;
-            margin: 0 auto;
-            display: flex;
-            justify-content: space-between;
-            align-items: center;
-            padding: 0 2rem;
-        }
-
-        .logo {
-            font-size: 1.8rem;
-            font-weight: bold;
-            color: #2563eb;
-            text-decoration: none;
+      @media (max-width: 768px) {
+        .hamburger {
+          display: flex;
         }
 
         .nav-menu {
-            display: flex;
-            list-style: none;
-            gap: 2rem;
+          position: fixed;
+          left: -100%;
+          top: 70px;
+          flex-direction: column;
+          background: rgb(200, 173, 123);
+          backdrop-filter: blur(10px);
+          width: 100%;
+          text-align: center;
+          transition: 0.4s cubic-bezier(0.25, 0.46, 0.45, 0.94);
+          box-shadow: 0 10px 27px rgba(0, 0, 0, 0.15);
+          padding: 2rem 0;
+          border-radius: 0 0 20px 20px;
         }
 
-        .nav-menu a {
-            text-decoration: none;
-            color: #333;
-            font-weight: 500;
-            transition: color 0.3s ease;
-            cursor: pointer;
+        .nav-menu.active {
+          left: 0;
         }
 
-        .nav-menu a:hover {
-            color: #2563eb;
+        .nav-menu li {
+          margin: 1rem 0;
+          transform: translateX(-50px);
+          opacity: 0;
+          transition: all 0.3s ease;
         }
 
-        .nav-menu a.active {
-            color: #2563eb;
-            font-weight: 600;
+        .nav-menu.active li {
+          transform: translateX(0);
+          opacity: 1;
         }
 
-        .hamburger {
-            display: none;
-            flex-direction: column;
-            cursor: pointer;
+        .nav-menu.active li:nth-child(1) {
+          transition-delay: 0.1s;
+        }
+        .nav-menu.active li:nth-child(2) {
+          transition-delay: 0.2s;
+        }
+        .nav-menu.active li:nth-child(3) {
+          transition-delay: 0.3s;
+        }
+        .nav-menu.active li:nth-child(4) {
+          transition-delay: 0.4s;
         }
 
-        .hamburger span {
-            width: 25px;
-            height: 3px;
-            background: #333;
-            margin: 3px 0;
-            transition: 0.3s;
+        .nav-container {
+          padding: 0 1rem;
         }
 
-        /* Hero Section with Slider */
         .hero {
-            height: 110vh;
-            position: relative;
-            overflow: hidden;
+          height: 70vh;
+          min-height: 350px;
+        }
+        
+        .hero .heroImg img {
+          object-fit: cover;
+          object-position: top;
+        }
+      }
+
+      @media (max-width: 480px) {
+        .logo {
+          font-size: 1.5rem;
         }
 
-        .hero-slider {
-            width: 100%;
-            height: 100%;
-            position: relative;
+        .hero {
+          height: 60vh;
+          min-height: 300px;
         }
 
-        .hero-slide {
-            position: absolute;
-            top: 80px;
-            left: 0;
-            width: 100%;
-            height: 100%;
-            background-size: cover;
-            background-position: center;
-            background-repeat: no-repeat;
-            display: flex;
-            align-items: center;
-            justify-content: center;
-            opacity: 0;
-            transition: opacity 1s ease-in-out;
+        .hero .heroImg img {
+          object-fit: contain;
+          object-position: top;
         }
+      }
 
-        .hero-slide.active {
-            opacity: 1;
+      @media (max-width: 360px) {
+        .hero {
+          height: 50vh;
+          min-height: 250px;
         }
-
-        .hero-slide::before {
-            content: '';
-            position: absolute;
-            top: 0;
-            left: 0;
-            width: 100%;
-            height: 100%;
-            background: rgba(37, 99, 235, 0.1);
-        }
-
-        /* Different backgrounds for each slide */
-        .hero-slide:nth-child(1) {
-            background-image: url('images/h1.jpg');
-        }
-
-        .hero-slide:nth-child(2) {
-            background-image: url('images/h2.jpeg');
-        }
-
-        .hero-slide:nth-child(3) {
-            background-image: url('images/h3.jpeg');
-        }
-
-        .hero-slide.active .hero-content {
-            animation: slideUp 0.8s ease-out forwards;
-        }
-
-        @keyframes slideUp {
-            to {
-                transform: translateY(0);
-                opacity: 1;
-            }
-        }
-
-        .hero h1 {
-            font-size: 3.5rem;
-            margin-bottom: 1rem;
-            color: #1e40af;
-        }
-
-        .hero p {
-            font-size: 1.3rem;
-            color: #64748b;
-            margin-bottom: 2rem;
-        }
-
-        .cta-button {
-            background: linear-gradient(135deg, #2563eb, #3b82f6);
-            color: white;
-            padding: 1rem 2rem;
-            border: none;
-            border-radius: 10px;
-            font-size: 1.1rem;
-            font-weight: 600;
-            cursor: pointer;
-            transition: all 0.3s ease;
-            text-decoration: none;
-            display: inline-block;
-        }
-
-        .cta-button:hover {
-            transform: translateY(-2px);
-            box-shadow: 0 10px 20px rgba(37, 99, 235, 0.3);
-        }
-
-        /* Hero Navigation */
-        .hero-nav {
-            position: absolute;
-            bottom: 30px;
-            left: 50%;
-            transform: translateX(-50%);
-            display: flex;
-            gap: 15px;
-            z-index: 2;
-        }
-
-        .hero-nav-btn {
-            width: 15px;
-            height: 15px;
-            border-radius: 50%;
-            background: rgba(255, 255, 255, 0.5);
-            border: 2px solid white;
-            cursor: pointer;
-            transition: all 0.3s ease;
-        }
-
-        .hero-nav-btn.active {
-            background: white;
-            transform: scale(1.2);
-        }
-
-
-        /* Operational Cities Section */
-        .cities {
-            padding: 6rem 0;
-            /* background: white; */
-            opacity: 0;
-            transform: translateY(50px);
-            transition: all 0.8s ease;
-        }
-
-        .cities.visible {
-            opacity: 1;
-            transform: translateY(0);
-        }
-
-        .container {
-            max-width: 1200px;
-            margin: 0 auto;
-            padding: 0 2rem;
-        }
-
-        .section-title {
-            text-align: center;
-            font-size: 2.5rem;
-            color: #1e40af;
-            margin-bottom: 3rem;
-        }
-
-        .cities-grid {
-            display: grid;
-            grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
-            gap: 2rem;
-            margin-bottom: 4rem;
-        }
-
-        .city-card {
-            background: linear-gradient(135deg, #f0f9ff, #e0f2fe);
-            padding: 2rem;
-            text-align: center;
-            border-radius: 15px;
-            transition: transform 0.3s ease;
-        }
-
-        .city-card:hover {
-            transform: translateY(-5px);
-        }
-
-        .city-card h3 {
-            font-size: 1.8rem;
-            color: #1e40af;
-            margin-bottom: 1rem;
-        }
-
-        .city-card p {
-            color: #64748b;
-            font-size: 1.1rem;
-        }
-
-        .stats {
-            text-align: center;
-            background: linear-gradient(135deg, #2563eb, #3b82f6);
-            color: white;
-            padding: 3rem 2rem;
-            border-radius: 20px;
-            margin: 2rem 0;
-            opacity: 0;
-            transform: scale(0.9);
-            transition: all 0.8s ease 0.2s;
-        }
-
-        .stats.visible {
-            opacity: 1;
-            transform: scale(1);
-        }
-
-        .stats h2 {
-            font-size: 3rem;
-            margin-bottom: 1rem;
-        }
-
-        .stats p {
-            font-size: 1.3rem;
-            opacity: 0.9;
-        }
-
-        /* Testimonials Section */
-        .testimonials {
-            padding: 6rem 0;
-            background: #f8fafc;
-            opacity: 0;
-            transform: translateY(50px);
-            transition: all 0.8s ease;
-        }
-
-        .testimonials.visible {
-            opacity: 1;
-            transform: translateY(0);
-        }
-
-        .testimonial-slider {
-            position: relative;
-            max-width: 800px;
-            margin: 0 auto;
-            overflow: hidden;
-            border-radius: 20px;
-        }
-
-        .testimonial {
-            padding: 3rem;
-            text-align: center;
-            background: white;
-            box-shadow: 0 20px 40px rgba(0, 0, 0, 0.1);
-            display: none;
-        }
-
-        .testimonial.active {
-            display: block;
-            animation: fadeIn 0.8s ease-out;
-        }
-
-        @keyframes fadeIn {
-            from { opacity: 0; }
-            to { opacity: 1; }
-        }
-
-        .testimonial img {
-            width: 80px;
-            height: 80px;
-            border-radius: 50%;
-            margin-bottom: 1.5rem;
-            object-fit: cover;
-            border: 4px solid #e0f2fe;
-        }
-
-        .testimonial h4 {
-            font-size: 1.3rem;
-            color: #1e40af;
-            margin-bottom: 0.5rem;
-        }
-
-        .testimonial p {
-            font-style: italic;
-            color: #64748b;
-            font-size: 1.1rem;
-            line-height: 1.8;
-        }
-
-        .slider-nav {
-            display: flex;
-            justify-content: center;
-            gap: 1rem;
-            margin-top: 2rem;
-        }
-
-        .slider-btn {
-            width: 12px;
-            height: 12px;
-            border-radius: 50%;
-            background: #cbd5e1;
-            border: none;
-            cursor: pointer;
-            transition: background 0.3s ease;
-        }
-
-        .slider-btn.active {
-            background: #2563eb;
-        }
-
-        /* Inquiry Form Section */
-        .inquiry {
-            padding: 6rem 0;
-            background: white;
-            opacity: 0;
-            transform: translateY(50px);
-            transition: all 0.8s ease;
-        }
-
-        .inquiry.visible {
-            opacity: 1;
-            transform: translateY(0);
-        }
-
-        .form-container {
-            max-width: 600px;
-            margin: 0 auto;
-            background: #f8fafc;
-            padding: 3rem;
-            border-radius: 20px;
-        }
-
-        .form-group {
-            margin-bottom: 2rem;
-        }
-
-        .form-group label {
-            display: block;
-            margin-bottom: 0.5rem;
-            color: #374151;
-            font-weight: 600;
-        }
-
-        .form-group input,
-        .form-group textarea {
-            width: 100%;
-            padding: 1rem;
-            border: 2px solid #e5e7eb;
-            border-radius: 10px;
-            font-size: 1rem;
-            transition: border-color 0.3s ease;
-        }
-
-        .form-group input:focus,
-        .form-group textarea:focus {
-            outline: none;
-            border-color: #2563eb;
-        }
-
-        .form-group textarea {
-            height: 120px;
-            resize: vertical;
-        }
-
-        /* Footer */
-        .footer {
-            background: linear-gradient(135deg, #1e40af, #2563eb);
-            color: white;
-            padding: 3rem 0;
-            text-align: center;
-        }
-
-        .footer-content {
-            max-width: 1200px;
-            margin: 0 auto;
-            padding: 0 2rem;
-        }
-
-        .footer h3 {
-            font-size: 2rem;
-            margin-bottom: 1rem;
-        }
-
-        .footer p {
-            font-size: 1.1rem;
-            opacity: 0.9;
-            margin-bottom: 2rem;
-        }
-
-        .footer-links {
-            display: flex;
-            justify-content: center;
-            gap: 2rem;
-            margin-bottom: 2rem;
-        }
-
-        .footer-links a {
-            color: white;
-            text-decoration: none;
-            opacity: 0.8;
-            transition: opacity 0.3s ease;
-        }
-
-        .footer-links a:hover {
-            opacity: 1;
-        }
-
-        .footer-bottom {
-            border-top: 1px solid rgba(255, 255, 255, 0.2);
-            padding-top: 2rem;
-            opacity: 0.7;
-        }
-
-        /* Responsive Design */
-        @media (max-width: 768px) {
-            .hamburger {
-                display: flex;
-            }
-
-            .nav-menu {
-                position: fixed;
-                left: -100%;
-                top: 70px;
-                flex-direction: column;
-                background-color: white;
-                width: 100%;
-                text-align: center;
-                transition: 0.3s;
-                box-shadow: 0 10px 27px rgba(0, 0, 0, 0.05);
-                padding: 2rem 0;
-            }
-
-            .nav-menu.active {
-                left: 0;
-            }
-
-            .hero h1 {
-                font-size: 2.5rem;
-            }
-
-            .hero p {
-                font-size: 1.1rem;
-            }
-
-            .section-title {
-                font-size: 2rem;
-            }
-
-            .cities-grid {
-                grid-template-columns: 1fr;
-            }
-
-            .footer-links {
-                flex-direction: column;
-                gap: 1rem;
-            }
-
-            .nav-container {
-                padding: 0 1rem;
-            }
-
-            .container {
-                padding: 0 1rem;
-            }
-
-            .hero-arrow {
-                width: 40px;
-                height: 40px;
-                font-size: 1.2rem;
-            }
-
-            .hero-arrow.prev {
-                left: 15px;
-            }
-
-            .hero-arrow.next {
-                right: 15px;
-            }
-        }
-
-        @media (max-width: 480px) {
-            .hero-content {
-                padding: 1.5rem;
-            }
-
-            .form-container {
-                padding: 2rem;
-            }
-
-            .testimonial {
-                padding: 2rem;
-            }
-
-            .hero h1 {
-                font-size: 2rem;
-            }
-
-            .hero{
-                height: 80vh;
-            }
-        }
-
-        /* Smooth scrolling */
-        html {
-            scroll-behavior: smooth;
-        }
-
-        /* Add padding for fixed navbar */
-        .section {
-            padding-top: 80px;
-            margin-top: -80px;
-        }
+      }
+
+
+      /* Locations Section Styles */
+  .locations {
+    padding: 5rem 2rem;
+    background-color: #f8f9fa;
+    text-align: center;
+  }
+
+  .container {
+    max-width: 1200px;
+    margin: 0 auto;
+  }
+
+  .section-title {
+    font-size: 2rem;
+    color: #333;
+    margin-bottom: 3rem;
+    font-weight: 600;
+    line-height: 1.3;
+  }
+
+  .location-cards {
+    display: flex;
+    justify-content: center;
+    gap: 2rem;
+    flex-wrap: wrap;
+    margin-bottom: 3rem;
+  }
+
+  .location-card {
+    background: white;
+    border-radius: 12px;
+    padding: 2rem;
+    box-shadow: 0 5px 15px rgba(0, 0, 0, 0.1);
+    width: 100%;
+    max-width: 400px;
+    text-align: center;
+    transition: transform 0.3s ease, box-shadow 0.3s ease;
+  }
+
+  .location-card:hover {
+    transform: translateY(-5px);
+    box-shadow: 0 10px 25px rgba(0, 0, 0, 0.15);
+  }
+
+  .city {
+    font-size: 1.5rem;
+    color: rgb(186, 128, 19);
+    margin-bottom: 1rem;
+    font-weight: 700;
+  }
+
+  .description {
+    font-size: 1.1rem;
+    color: #333;
+    margin-bottom: 0.5rem;
+    font-weight: 500;
+  }
+
+  .subtext {
+    font-size: 1rem;
+    color: #666;
+    font-weight: 400;
+  }
+
+  .cta {
+    margin-top: 2rem;
+  }
+
+  .cta-text {
+    font-size: 1.3rem;
+    color: #333;
+    margin-bottom: 1.5rem;
+    font-weight: 500;
+  }
+
+  .cta-button {
+    background: rgb(186, 128, 19);
+    color: white;
+    border: none;
+    padding: 0.8rem 2rem;
+    font-size: 1rem;
+    border-radius: 30px;
+    cursor: pointer;
+    transition: background 0.3s ease, transform 0.2s ease;
+    font-weight: 600;
+  }
+
+  .cta-button:hover {
+    background: rgb(200, 150, 30);
+    transform: scale(1.05);
+  }
+
+  /* Responsive Design */
+  @media (max-width: 768px) {
+    .section-title {
+      font-size: 1.7rem;
+      margin-bottom: 2rem;
+    }
+
+    .location-cards {
+      gap: 1.5rem;
+    }
+
+    .location-card {
+      padding: 1.5rem;
+    }
+
+    .city {
+      font-size: 1.3rem;
+    }
+
+    .description {
+      font-size: 1rem;
+    }
+
+    .cta-text {
+      font-size: 1.1rem;
+    }
+  }
+
+  @media (max-width: 480px) {
+    .locations {
+      padding: 3rem 1.5rem;
+    }
+
+    .section-title {
+      font-size: 1.5rem;
+    }
+
+    .location-card {
+      padding: 1.2rem;
+    }
+
+    .cta-button {
+      padding: 0.7rem 1.8rem;
+    }
+  }
+
+  
+
+      /* Smooth scrolling */
+      html {
+        scroll-behavior: smooth;
+      }
     </style>
-</head>
-<body>
+  </head>
+  <body>
     <!-- Navbar -->
     <nav class="navbar">
-        <div class="nav-container">
-            <a href="#home" class="logo">Car-O</a>
-            <ul class="nav-menu">
-                <li><a href="#home" onclick="scrollToSection('home')">Home</a></li>
-                <li><a href="#cities" onclick="scrollToSection('cities')">Cities</a></li>
-                <li><a href="#testimonials" onclick="scrollToSection('testimonials')">Testimonials</a></li>
-                <li><a href="#inquiry" onclick="scrollToSection('inquiry')">Contact</a></li>
-            </ul>
-            <div class="hamburger" onclick="toggleMenu()">
-                <span></span>
-                <span></span>
-                <span></span>
-            </div>
+      <div class="nav-container">
+        <a href="#home" class="logo">Car-O</a>
+        <ul class="nav-menu">
+          <li><a href="#home" class="active">Home</a></li>
+          <li><a href="#services">Services</a></li>
+          <li><a href="#about">About</a></li>
+          <li><a href="#contact">Contact</a></li>
+        </ul>
+        <div class="hamburger" onclick="toggleMenu()">
+          <span></span>
+          <span></span>
+          <span></span>
         </div>
+      </div>
     </nav>
 
-    <!-- Hero Section with Slider -->
-    <section id="home" class="hero section">
-        <div class="hero-slider">
-            <!-- Slide 1 -->
-            <div class="hero-slide active">
-
-            </div>
-
-            <!-- Slide 2 -->
-            <div class="hero-slide">
-
-            </div>
-
-            <!-- Slide 3 -->
-            <div class="hero-slide">
-
-            </div>
-        </div>
-
-        <!-- Hero Navigation Arrows -->
-        <button class="hero-arrow prev" onclick="changeSlide(-1)"></button>
-        <button class="hero-arrow next" onclick="changeSlide(1)"></button>
-
-        <!-- Hero Navigation Dots -->
-        <div class="hero-nav">
-            <button class="hero-nav-btn active" onclick="goToSlide(0)"></button>
-            <button class="hero-nav-btn" onclick="goToSlide(1)"></button>
-            <button class="hero-nav-btn" onclick="goToSlide(2)"></button>
+    <!-- Hero Section -->
+    <section id="home" class="hero">
+        <div class="heroImg">
+            <img src="images/hero.png" alt="Car Cleaning" />
         </div>
     </section>
 
-    <!-- Operational Cities Section -->
-    <section id="cities" class="cities section">
-        <div class="container">
-            <h2 class="section-title">Our Service Areas</h2>
-            <div class="cities-grid">
-                <div class="city-card">
-                    <h3>Lucknow</h3>
-                    <p>Comprehensive car wash services across all major areas of Lucknow. Professional team with modern equipment.</p>
-                </div>
-                <div class="city-card">
-                    <h3>Noida</h3>
-                    <p>Premium car cleaning services in Noida and surrounding areas. Quick, efficient, and reliable service.</p>
-                </div>
-            </div>
-            <div class="stats">
-                <h2>5000+</h2>
-                <p>Happy Customers Trust Our Service</p>
-            </div>
-        </div>
-    </section>
-
-    <!-- Testimonials Section -->
-    <section id="testimonials" class="testimonials section">
-        <div class="container">
-            <h2 class="section-title">What Our Customers Say</h2>
-            <div class="testimonial-slider">
-                <div class="testimonial active">
-                    <img src="images/t1.jpg" alt="Customer 1">
-                    <h4>Arti Kumari</h4>
-                    <p>"Big shoutout to Car O for making my mornings a breeze! Their daily car cleaning service ensures my ride is spotless, adding a touch of convenience to my routine. I'm beyond satisfied with their efficient and reliable team!."</p>
-                </div>
-                <div class="testimonial">
-                    <img src="images/t2.jpg" alt="Customer 2">
-                    <h4>Aman Sharma</h4>
-                    <p>"कौन नहीं चाहता कि उसके कपड़े या कार साफ-सुथरे दिखें। मैं भी चाहता हूं। दिक्कत बस समय की होती है — रोज़-रोज़ सुबह गाड़ी को साफ करना आसान काम नहीं है, खासकर जब आपको रोज़ दफ़्तर जाना हो।
-मैं शुक्रगुज़ार हूं Car O का, जो मेरी सुबह को आसान और अच्छा बनाते हैं। मुझे मेरी कार रोज़ सुबह साफ़ मिलती है — और इससे ज्यादा मुझे क्या चाहिए।"</p>
-                </div>
-                <div class="testimonial">
-                    <img src="images/t3.jpg" alt="Customer 3">
-                    <h4>Amit Singh</h4>
-                    <p>"Thank you Car O Done team for making me feel good every morning when I step into my car. Being an office-going guy, it was difficult for me to keep my car clean. Thanks to Car O Done's service, now I feel relieved. You guys took my stress away — and all that at just ₹149 a week is more than I could ask for!."</p>
-                </div>
-                <div class="testimonial">
-                    <img src="images/t4.jpg" alt="Customer 3">
-                    <h4>Aditya Singh</h4>
-                    <p>"पहले मैं, समय की कमी होनी वजह से अपनी गाड़ी हर हफ्ते में एक बार साफ कराता था। गाड़ी दी 1-2 दिन तो साफ दिखती थी, लेकिन फिर बाकी दिन वही गंदगी। 
-Car O की मदद से अब मुझे रोज सुबह साफ गाड़ी मिल जाती है।
-मेरी हर सुबह को शानदार बनाने के लिए शुक्रिया।"</p>
-                </div>
-            </div>
-            <div class="slider-nav">
-                <button class="slider-btn active" onclick="showTestimonial(0)"></button>
-                <button class="slider-btn" onclick="showTestimonial(1)"></button>
-                <button class="slider-btn" onclick="showTestimonial(2)"></button>
-                <button class="slider-btn" onclick="showTestimonial(3)"></button>
-            </div>
-        </div>
-    </section>
-
-    <!-- Inquiry Form Section -->
-    <section id="inquiry" class="inquiry section">
-        <div class="container">
-            <h2 class="section-title">Get In Touch</h2>
-            <div class="form-container">
-                <form onsubmit="handleSubmit(event)">
-                    <div class="form-group">
-                        <label for="name">Full Name</label>
-                        <input type="text" id="name" name="name" required>
-                    </div>
-                    <div class="form-group">
-                        <label for="phone">Phone Number</label>
-                        <input type="tel" id="phone" name="phone" required>
-                    </div>
-                    <div class="form-group">
-                        <label for="address">Address</label>
-                        <input type="text" id="address" name="address" required>
-                    </div>
-                    <div class="form-group">
-                        <label for="vehicle">Vehicle Model</label>
-                        <input type="text" id="vehicle" name="vehicle" required>
-                    </div>
-                    <button type="submit" class="cta-button" style="width: 100%;">Submit Inquiry</button>
-                </form>
-            </div>
-        </div>
-    </section>
-
-    <!-- Footer -->
-    <footer class="footer">
-        <div class="footer-content">
-            <h3>Car-O</h3>
-            <p>Professional car cleaning services in Lucknow and Noida</p>
-            <div class="footer-links">
-                <a href="#home" onclick="scrollToSection('home')">Home</a>
-                <a href="#cities" onclick="scrollToSection('cities')">Cities</a>
-                <a href="#testimonials" onclick="scrollToSection('testimonials')">Testimonials</a>
-                <a href="#inquiry" onclick="scrollToSection('inquiry')">Contact</a>
-            </div>
-            <div class="footer-bottom">
-                <p>&copy; 2025 Car-O. All rights reserved.</p>
-            </div>
-        </div>
-    </footer>
+    <!-- Locations Section -->
+<section class="locations">
+  <div class="container">
+    <h2 class="section-title">We're Already Powering Clean Cars In Your City</h2>
+    
+    <div class="location-cards">
+      <!-- Lucknow Card -->
+      <div class="location-card">
+        <h3 class="city">Lucknow</h3>
+        <p class="description">Cleaner teams across 25+ societies</p>
+        <p class="subtext">Trusted by families and professionals</p>
+      </div>
+      
+      <!-- NOIDA Card -->
+      <div class="location-card">
+        <h3 class="city">NOIDA</h3>
+        <p class="description">Expanding rapidly with tech-driven service</p>
+        <p class="subtext">Now available in sectors 50, 62, 78, and more</p>
+      </div>
+    </div>
+    
+    <div class="cta">
+      <p class="cta-text">Want Car-O in your society?</p>
+      <button class="cta-button">Contact Us</button>
+    </div>
+  </div>
+</section>
 
     <script>
-        // Hero Slider Variables
-        let currentSlide = 0;
-        const slides = document.querySelectorAll('.hero-slide');
-        const navBtns = document.querySelectorAll('.hero-nav-btn');
-        const totalSlides = slides.length;
+      // Mobile menu toggle
+      function toggleMenu() {
+        const navMenu = document.querySelector(".nav-menu");
+        const hamburger = document.querySelector(".hamburger");
+        navMenu.classList.toggle("active");
+        hamburger.classList.toggle("active");
+      }
 
-        // Hero Slider Functions
-        function showSlide(index) {
-            // Remove active class from all slides and nav buttons
-            slides.forEach(slide => slide.classList.remove('active'));
-            navBtns.forEach(btn => btn.classList.remove('active'));
-            
-            // Add active class to current slide and nav button
-            slides[index].classList.add('active');
-            navBtns[index].classList.add('active');
-            
-            currentSlide = index;
-        }
-
-        function nextSlide() {
-            const next = (currentSlide + 1) % totalSlides;
-            showSlide(next);
-        }
-
-        function prevSlide() {
-            const prev = (currentSlide - 1 + totalSlides) % totalSlides;
-            showSlide(prev);
-        }
-
-        function changeSlide(direction) {
-            if (direction === 1) {
-                nextSlide();
-            } else {
-                prevSlide();
-            }
-        }
-
-        function goToSlide(index) {
-            showSlide(index);
-        }
-
-        // Auto-slide functionality
-        setInterval(nextSlide, 6000);
-
-        // Mobile menu toggle
-        function toggleMenu() {
-            const navMenu = document.querySelector('.nav-menu');
-            const hamburger = document.querySelector('.hamburger');
-            navMenu.classList.toggle('active');
-            hamburger.classList.toggle('active');
-        }
-
-        // Smooth scroll to section
-        function scrollToSection(sectionId) {
-            const element = document.getElementById(sectionId);
-            const offset = 80; // Height of fixed navbar
-            const elementPosition = element.offsetTop - offset;
-            
-            window.scrollTo({
-                top: elementPosition,
-                behavior: 'smooth'
-            });
-
-            // Close mobile menu if open
-            const navMenu = document.querySelector('.nav-menu');
-            const hamburger = document.querySelector('.hamburger');
-            navMenu.classList.remove('active');
-            hamburger.classList.remove('active');
-        }
-
-        // Testimonial slider
-        let currentTestimonial = 0;
-        const testimonials = document.querySelectorAll('.testimonial');
-        const sliderBtns = document.querySelectorAll('.slider-btn');
-
-        function showTestimonial(index) {
-            testimonials[currentTestimonial].classList.remove('active');
-            sliderBtns[currentTestimonial].classList.remove('active');
-            
-            currentTestimonial = index;
-            
-            testimonials[currentTestimonial].classList.add('active');
-            sliderBtns[currentTestimonial].classList.add('active');
-        }
-
-        // Auto-slide testimonials
-        setInterval(() => {
-            const nextIndex = (currentTestimonial + 1) % testimonials.length;
-            showTestimonial(nextIndex);
-        }, 5000);
-
-        // Form submission
-        function handleSubmit(event) {
-            event.preventDefault();
-            
-            const formData = new FormData(event.target);
-            const data = {
-                name: formData.get('name'),
-                phone: formData.get('phone'),
-                address: formData.get('address'),
-                vehicle: formData.get('vehicle')
-            };
-            
-            alert('Thank you for your inquiry! We will contact you soon.');
-            event.target.reset();
-        }
-
-        // Active nav link highlight and section reveal
-        window.addEventListener('scroll', () => {
-            const sections = document.querySelectorAll('.section');
-            const navLinks = document.querySelectorAll('.nav-menu a');
-            
-            let current = '';
-            sections.forEach(section => {
-                const sectionTop = section.offsetTop - 100;
-                if (scrollY >= sectionTop) {
-                    current = section.getAttribute('id');
-                }
-            });
-            
-            navLinks.forEach(link => {
-                link.classList.remove('active');
-                if (link.getAttribute('href').substring(1) === current) {
-                    link.classList.add('active');
-                }
-            });
-
-            // Section reveal animation
-            const revealSections = () => {
-                const sections = document.querySelectorAll('.cities, .testimonials, .inquiry, .stats');
-                
-                sections.forEach(section => {
-                    const sectionTop = section.getBoundingClientRect().top;
-                    const windowHeight = window.innerHeight;
-                    
-                    if (sectionTop < windowHeight - 100) {
-                        section.classList.add('visible');
-                    }
-                });
-            };
-            
-            revealSections();
+      // Close mobile menu when clicking on links
+      document.querySelectorAll(".nav-menu a").forEach((link) => {
+        link.addEventListener("click", () => {
+          const navMenu = document.querySelector(".nav-menu");
+          const hamburger = document.querySelector(".hamburger");
+          navMenu.classList.remove("active");
+          hamburger.classList.remove("active");
         });
+      });
 
-        // Initialize section visibility on page load
-        document.addEventListener('DOMContentLoaded', () => {
-            const stats = document.querySelector('.stats');
-            if (stats.getBoundingClientRect().top < window.innerHeight) {
-                stats.classList.add('visible');
-            }
-                        // Initialize hero content animations
-            const heroContents = document.querySelectorAll('.hero-content');
-            heroContents.forEach(content => {
-                content.style.animation = 'none';
-                setTimeout(() => {
-                    content.style.animation = '';
-                }, 10);
-            });
+      // Close mobile menu when clicking outside
+      document.addEventListener("click", (e) => {
+        const navMenu = document.querySelector(".nav-menu");
+        const hamburger = document.querySelector(".hamburger");
+        const navbar = document.querySelector(".navbar");
 
-            // Initialize section visibility
-            const sections = document.querySelectorAll('.cities, .testimonials, .inquiry, .stats');
-            sections.forEach(section => {
-                if (section.getBoundingClientRect().top < window.innerHeight) {
-                    section.classList.add('visible');
-                }
-            });
-        });
+        if (!navbar.contains(e.target)) {
+          navMenu.classList.remove("active");
+          hamburger.classList.remove("active");
+        }
+      });
+
+      // Smooth navbar background on scroll
+      window.addEventListener("scroll", () => {
+        const navbar = document.querySelector(".navbar");
+        if (window.scrollY > 50) {
+          navbar.style.background = "rgb(200, 173, 123)";
+          navbar.style.boxShadow = "0 4px 30px rgba(0, 0, 0, 0.15)";
+        } else {
+          navbar.style.background = "rgb(200, 173, 123)";
+          navbar.style.boxShadow = "0 2px 20px rgba(0, 0, 0, 0.1)";
+        }
+      });
     </script>
-</body>
+  </body>
 </html>
