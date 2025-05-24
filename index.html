@@ -50,11 +50,6 @@
         gap: 0.5rem;
       }
 
-      .logo::after {
-        content: "🚗";
-        font-size: 2rem;
-      }
-
       .nav-menu {
         display: flex;
         list-style: none;
@@ -218,7 +213,7 @@
           height: 70vh;
           min-height: 350px;
         }
-        
+
         .hero .heroImg img {
           object-fit: cover;
           object-position: top;
@@ -231,7 +226,7 @@
         }
 
         .hero {
-          height: 60vh;
+          height: 44vh;
           min-height: 300px;
         }
 
@@ -248,146 +243,748 @@
         }
       }
 
-
       /* Locations Section Styles */
-  .locations {
-    padding: 5rem 2rem;
-    background-color: #f8f9fa;
-    text-align: center;
-  }
+      .locations {
+        padding: 5rem 2rem;
+        background-color: #f8f9fa;
+        text-align: center;
+      }
 
-  .container {
-    max-width: 1200px;
-    margin: 0 auto;
-  }
+      .container {
+        max-width: 1200px;
+        margin: 0 auto;
+      }
 
-  .section-title {
-    font-size: 2rem;
-    color: #333;
-    margin-bottom: 3rem;
-    font-weight: 600;
-    line-height: 1.3;
-  }
+      .section-title {
+        font-size: 2rem;
+        color: #333;
+        margin-bottom: 3rem;
+        font-weight: 600;
+        line-height: 1.3;
+      }
 
-  .location-cards {
-    display: flex;
-    justify-content: center;
-    gap: 2rem;
-    flex-wrap: wrap;
-    margin-bottom: 3rem;
-  }
+      .location-cards {
+        display: flex;
+        justify-content: center;
+        gap: 3rem;
+        flex-wrap: wrap;
+      }
 
-  .location-card {
-    background: white;
-    border-radius: 12px;
-    padding: 2rem;
-    box-shadow: 0 5px 15px rgba(0, 0, 0, 0.1);
-    width: 100%;
-    max-width: 400px;
-    text-align: center;
-    transition: transform 0.3s ease, box-shadow 0.3s ease;
-  }
+      .location-card {
+        background: white;
+        border-radius: 15px;
+        padding: 2.5rem 2rem 2rem;
+        box-shadow: 0 5px 20px rgba(0, 0, 0, 0.08);
+        width: 100%;
+        max-width: 350px;
+        text-align: center;
+        transition: transform 0.3s ease, box-shadow 0.3s ease;
+        position: relative;
+        margin-top: 60px; /* Space for overlapping image */
+      }
 
-  .location-card:hover {
-    transform: translateY(-5px);
-    box-shadow: 0 10px 25px rgba(0, 0, 0, 0.15);
-  }
+      .location-card:hover {
+        transform: translateY(-5px);
+        box-shadow: 0 15px 30px rgba(0, 0, 0, 0.12);
+      }
 
-  .city {
-    font-size: 1.5rem;
-    color: rgb(186, 128, 19);
-    margin-bottom: 1rem;
-    font-weight: 700;
-  }
+      .city-image {
+        width: 120px;
+        height: 120px;
+        border-radius: 50%;
+        overflow: hidden;
+        margin: 0 auto;
+        border: 4px solid rgb(200, 173, 123);
+        box-shadow: 0 3px 10px rgba(0, 0, 0, 0.1);
+        position: absolute;
+        top: -60px; /* Half outside the card */
+        left: 50%;
+        transform: translateX(-50%);
+      }
 
-  .description {
-    font-size: 1.1rem;
-    color: #333;
-    margin-bottom: 0.5rem;
-    font-weight: 500;
-  }
+      .city-image img {
+        width: 100%;
+        height: 100%;
+        object-fit: cover;
+      }
 
-  .subtext {
-    font-size: 1rem;
-    color: #666;
-    font-weight: 400;
-  }
+      .city {
+        font-size: 1.5rem;
+        color: rgb(186, 128, 19);
+        margin: 2rem 0 1rem;
+        font-weight: 700;
+      }
 
-  .cta {
-    margin-top: 2rem;
-  }
+      .description {
+        font-size: 1.1rem;
+        color: #333;
+        margin-bottom: 0.5rem;
+        font-weight: 500;
+      }
 
-  .cta-text {
-    font-size: 1.3rem;
-    color: #333;
-    margin-bottom: 1.5rem;
-    font-weight: 500;
-  }
+      .subtext {
+        font-size: 1rem;
+        color: #666;
+        font-weight: 400;
+      }
 
-  .cta-button {
-    background: rgb(186, 128, 19);
-    color: white;
-    border: none;
-    padding: 0.8rem 2rem;
-    font-size: 1rem;
-    border-radius: 30px;
-    cursor: pointer;
-    transition: background 0.3s ease, transform 0.2s ease;
-    font-weight: 600;
-  }
+      /* Responsive Design */
+      @media (max-width: 768px) {
+        .section-title {
+          font-size: 1.7rem;
+          margin-bottom: 2.5rem;
+        }
 
-  .cta-button:hover {
-    background: rgb(200, 150, 30);
-    transform: scale(1.05);
-  }
+        .location-cards {
+          gap: 2rem;
+        }
 
-  /* Responsive Design */
-  @media (max-width: 768px) {
-    .section-title {
-      font-size: 1.7rem;
-      margin-bottom: 2rem;
-    }
+        .location-card {
+          padding: 2rem 1.5rem 1.5rem;
+          margin-top: 50px;
+        }
 
-    .location-cards {
-      gap: 1.5rem;
-    }
+        .city-image {
+          width: 100px;
+          height: 100px;
+          top: -50px;
+        }
 
-    .location-card {
-      padding: 1.5rem;
-    }
+        .city {
+          margin: 1.5rem 0 1rem;
+        }
+      }
 
-    .city {
-      font-size: 1.3rem;
-    }
+      @media (max-width: 480px) {
+        .locations {
+          padding: 3.5rem 1.5rem;
+        }
 
-    .description {
-      font-size: 1rem;
-    }
+        .section-title {
+          font-size: 1.5rem;
+        }
 
-    .cta-text {
-      font-size: 1.1rem;
-    }
-  }
+        .location-card {
+          padding: 1.8rem 1.2rem 1.2rem;
+          max-width: 300px;
+          margin-top: 45px;
+        }
 
-  @media (max-width: 480px) {
-    .locations {
-      padding: 3rem 1.5rem;
-    }
+        .city-image {
+          width: 90px;
+          height: 90px;
+          top: -45px;
+        }
+      }
 
-    .section-title {
-      font-size: 1.5rem;
-    }
+      /* Pricing Section Styles */
+      .pricing {
+        padding: 5rem 2rem;
+        background-color: #f8f9fa;
+        text-align: center;
+      }
 
-    .location-card {
-      padding: 1.2rem;
-    }
+      .container {
+        max-width: 1200px;
+        margin: 0 auto;
+      }
 
-    .cta-button {
-      padding: 0.7rem 1.8rem;
-    }
-  }
+      .section-title {
+        font-size: 2rem;
+        color: #333;
+        margin-bottom: 1rem;
+        font-weight: 700;
+        line-height: 1.3;
+      }
 
-  
+      .section-subtitle {
+        font-size: 1.2rem;
+        color: #666;
+        margin-bottom: 3rem;
+        font-weight: 400;
+      }
+
+      .pricing-cards {
+        display: flex;
+        justify-content: center;
+        gap: 2rem;
+        flex-wrap: wrap;
+      }
+
+      .pricing-card {
+        background: white;
+        border-radius: 15px;
+        padding: 2.5rem 2rem;
+        box-shadow: 0 5px 20px rgba(0, 0, 0, 0.08);
+        width: 100%;
+        max-width: 350px;
+        text-align: center;
+        transition: transform 0.3s ease, box-shadow 0.3s ease;
+        position: relative;
+      }
+
+      .pricing-card.featured {
+        border: 2px solid rgb(200, 173, 123);
+        transform: translateY(-10px);
+      }
+
+      .pricing-card:hover {
+        transform: translateY(-5px);
+        box-shadow: 0 15px 30px rgba(0, 0, 0, 0.12);
+      }
+
+      .pricing-card.featured:hover {
+        transform: translateY(-15px);
+      }
+
+      .plan-icon {
+        width: 60px;
+        height: 60px;
+        margin: 0 auto 1.5rem;
+        color: rgb(186, 128, 19);
+      }
+
+      .plan-icon svg {
+        width: 100%;
+        height: 100%;
+        fill: currentColor;
+      }
+
+      .plan-name {
+        font-size: 1.5rem;
+        color: #333;
+        margin-bottom: 1rem;
+        font-weight: 600;
+      }
+
+      .plan-price {
+        font-size: 2.2rem;
+        color: rgb(186, 128, 19);
+        margin-bottom: 1.5rem;
+        font-weight: 700;
+      }
+
+      .plan-price span {
+        font-size: 1rem;
+        color: #666;
+        font-weight: 400;
+      }
+
+      .plan-features {
+        list-style: none;
+        margin-bottom: 2rem;
+        text-align: left;
+        padding-left: 1rem;
+      }
+
+      .plan-features li {
+        margin-bottom: 0.8rem;
+        position: relative;
+        padding-left: 1.8rem;
+        font-size: 1rem;
+      }
+
+      .plan-features li:before {
+        content: "✓";
+        position: absolute;
+        left: 0;
+        color: rgb(186, 128, 19);
+        font-weight: bold;
+      }
+
+      .plan-button {
+        background: rgb(186, 128, 19);
+        color: white;
+        border: none;
+        padding: 0.8rem 2rem;
+        font-size: 1rem;
+        border-radius: 30px;
+        cursor: pointer;
+        transition: all 0.3s ease;
+        font-weight: 600;
+        width: 100%;
+      }
+
+      .plan-button.featured {
+        background: rgb(200, 173, 123);
+      }
+
+      .plan-button:hover {
+        background: rgb(200, 150, 30);
+        transform: scale(1.02);
+      }
+
+      /* Responsive Design */
+      @media (max-width: 900px) {
+        .pricing-cards {
+          gap: 1.5rem;
+        }
+
+        .pricing-card {
+          max-width: 300px;
+        }
+      }
+
+      @media (max-width: 768px) {
+        .section-title {
+          font-size: 1.7rem;
+        }
+
+        .section-subtitle {
+          font-size: 1.1rem;
+        }
+
+        .pricing-card {
+          padding: 2rem 1.5rem;
+        }
+
+        .plan-icon {
+          width: 50px;
+          height: 50px;
+        }
+
+        .plan-name {
+          font-size: 1.3rem;
+        }
+
+        .plan-price {
+          font-size: 2rem;
+        }
+      }
+
+      @media (max-width: 480px) {
+        .pricing {
+          padding: 3rem 1.5rem;
+        }
+
+        .section-title {
+          font-size: 1.5rem;
+        }
+
+        .pricing-cards {
+          flex-direction: column;
+          align-items: center;
+        }
+
+        .pricing-card.featured {
+          transform: none;
+        }
+
+        .pricing-card.featured:hover {
+          transform: translateY(-5px);
+        }
+      }
+
+      /* Testimonials Section Styles */
+      .testimonials {
+        padding: 5rem 2rem;
+        background-color: white;
+        text-align: center;
+      }
+
+      .container {
+        max-width: 1200px;
+        margin: 0 auto;
+      }
+
+      .section-title {
+        font-size: 2rem;
+        color: #333;
+        margin-bottom: 3rem;
+        font-weight: 700;
+      }
+
+      /* Stats Grid */
+      .stats-grid {
+        display: grid;
+        grid-template-columns: repeat(auto-fit, minmax(200px, 1fr));
+        gap: 2rem;
+        margin-bottom: 4rem;
+      }
+
+      .stat-card {
+        background: #f8f9fa;
+        border-radius: 12px;
+        padding: 2rem 1rem;
+        transition: transform 0.3s ease;
+      }
+
+      .stat-card:hover {
+        transform: translateY(-5px);
+        box-shadow: 0 5px 15px rgba(0, 0, 0, 0.05);
+      }
+
+      .stat-icon {
+        width: 50px;
+        height: 50px;
+        margin: 0 auto 1rem;
+        color: rgb(186, 128, 19);
+      }
+
+      .stat-icon svg {
+        width: 100%;
+        height: 100%;
+        fill: currentColor;
+      }
+
+      .stat-number {
+        font-size: 1.8rem;
+        font-weight: 700;
+        color: #333;
+        margin-bottom: 0.5rem;
+      }
+
+      .stat-label {
+        font-size: 1rem;
+        color: #666;
+        font-weight: 500;
+      }
+
+      /* Testimonials Grid */
+      .testimonial-grid {
+        display: grid;
+        grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
+        gap: 2rem;
+      }
+
+      .testimonial-card {
+        background: #f8f9fa;
+        border-radius: 12px;
+        padding: 2rem;
+        text-align: left;
+        position: relative;
+        transition: transform 0.3s ease;
+      }
+
+      .testimonial-card:hover {
+        transform: translateY(-5px);
+        box-shadow: 0 5px 15px rgba(0, 0, 0, 0.05);
+      }
+
+      .quote-icon {
+        font-size: 3rem;
+        color: rgba(186, 128, 19, 0.2);
+        position: absolute;
+        top: 10px;
+        left: 20px;
+        font-weight: 700;
+        font-family: serif;
+      }
+
+      .testimonial-text {
+        font-size: 1.1rem;
+        color: #333;
+        margin-bottom: 1.5rem;
+        position: relative;
+        z-index: 1;
+        line-height: 1.6;
+      }
+
+      .client-info {
+        border-top: 1px solid rgba(0, 0, 0, 0.1);
+        padding-top: 1rem;
+      }
+
+      .client-name {
+        font-weight: 600;
+        color: #333;
+        margin-bottom: 0.2rem;
+      }
+
+      .client-location {
+        font-size: 0.9rem;
+        color: #666;
+      }
+
+      /* Responsive Design */
+      @media (max-width: 768px) {
+        .section-title {
+          font-size: 1.7rem;
+        }
+
+        .stats-grid {
+          grid-template-columns: repeat(2, 1fr);
+        }
+
+        .testimonial-grid {
+          grid-template-columns: 1fr;
+        }
+      }
+
+      @media (max-width: 480px) {
+        .testimonials {
+          padding: 3rem 1.5rem;
+        }
+
+        .stats-grid {
+          grid-template-columns: 1fr;
+        }
+
+        .stat-card {
+          width: 100%;
+          margin: 0 auto;
+        }
+      }
+
+      /* Testimonials Carousel Styles */
+      .testimonial-carousel-container {
+        position: relative;
+        margin: 0 auto;
+        max-width: 1200px;
+      }
+
+      .testimonial-carousel {
+        display: flex;
+        overflow-x: auto;
+        scroll-snap-type: x mandatory;
+        gap: 2rem;
+        padding: 1rem;
+        scroll-behavior: smooth;
+        -webkit-overflow-scrolling: touch;
+        scrollbar-width: none;
+        -ms-overflow-style: none;
+      }
+
+      .testimonial-carousel::-webkit-scrollbar {
+        display: none;
+      }
+
+      .testimonial-card {
+        flex: 0 0 calc(100% - 2rem);
+        scroll-snap-align: start;
+        background: #f8f9fa;
+        border-radius: 15px;
+        padding: 2rem;
+        text-align: center;
+        transition: transform 0.3s ease;
+        display: flex;
+        flex-direction: column;
+        align-items: center;
+      }
+
+      .carousel-button {
+        position: absolute;
+        top: 50%;
+        transform: translateY(-50%);
+        background: rgba(200, 173, 123, 0.7);
+        color: white;
+        border: none;
+        width: 40px;
+        height: 40px;
+        border-radius: 50%;
+        font-size: 1.2rem;
+        cursor: pointer;
+        z-index: 10;
+        display: flex;
+        align-items: center;
+        justify-content: center;
+        transition: all 0.3s ease;
+      }
+
+      .carousel-button:hover {
+        background: rgb(200, 173, 123);
+      }
+
+      .carousel-button.prev {
+        left: 10px;
+      }
+
+      .carousel-button.next {
+        right: 10px;
+      }
+
+      /* [Rest of your existing CSS remains the same] */
+
+      @media (min-width: 768px) {
+        .testimonial-card {
+          flex: 0 0 calc(50% - 2rem);
+        }
+      }
+
+      @media (min-width: 1024px) {
+        .testimonial-card {
+          flex: 0 0 calc(33.333% - 2rem);
+        }
+
+        .carousel-dots {
+          display: none;
+        }
+      }
+
+      /* Inquiry Form Styles */
+      .inquiry {
+        padding: 5rem 2rem;
+        background-color: #f8f9fa;
+      }
+
+      .form-container {
+        max-width: 800px;
+        margin: 0 auto;
+        background: white;
+        border-radius: 15px;
+        padding: 3rem;
+        box-shadow: 0 5px 20px rgba(0, 0, 0, 0.08);
+      }
+
+      .form-title {
+        font-size: 2rem;
+        color: #333;
+        margin-bottom: 2rem;
+        text-align: center;
+        font-weight: 600;
+      }
+
+      .form-group {
+        margin-bottom: 1.5rem;
+      }
+
+      .form-group label {
+        display: block;
+        margin-bottom: 0.5rem;
+        font-weight: 500;
+        color: #333;
+      }
+
+      .form-group input,
+      .form-group textarea,
+      .form-group select {
+        width: 100%;
+        padding: 0.8rem 1rem;
+        border: 1px solid #ddd;
+        border-radius: 8px;
+        font-size: 1rem;
+        transition: all 0.3s ease;
+      }
+
+      .form-group input:focus,
+      .form-group textarea:focus,
+      .form-group select:focus {
+        border-color: rgb(186, 128, 19);
+        outline: none;
+        box-shadow: 0 0 0 2px rgba(186, 128, 19, 0.2);
+      }
+
+      .form-group textarea {
+        min-height: 120px;
+        resize: vertical;
+      }
+
+      .submit-btn {
+        background: rgb(186, 128, 19);
+        color: white;
+        border: none;
+        padding: 0.8rem 2rem;
+        font-size: 1rem;
+        border-radius: 30px;
+        cursor: pointer;
+        transition: all 0.3s ease;
+        font-weight: 600;
+        display: block;
+        width: 100%;
+        margin-top: 1rem;
+      }
+
+      .submit-btn:hover {
+        background: rgb(200, 150, 30);
+        transform: scale(1.02);
+      }
+
+      /* Two column layout for larger screens */
+      @media (min-width: 768px) {
+        .form-row {
+          display: flex;
+          gap: 1.5rem;
+        }
+
+        .form-row .form-group {
+          flex: 1;
+        }
+      }
+
+      /* Footer Styles */
+      .footer {
+        background: rgb(200, 173, 123);
+        color: white;
+        padding: 3rem 2rem;
+        text-align: center;
+      }
+
+      .footer-container {
+        max-width: 1200px;
+        margin: 0 auto;
+      }
+
+      .footer-logo {
+        font-size: 1.8rem;
+        font-weight: bold;
+        margin-bottom: 1.5rem;
+        display: inline-block;
+      }
+
+      .footer-links {
+        display: flex;
+        justify-content: center;
+        flex-wrap: wrap;
+        gap: 1.5rem;
+        margin-bottom: 2rem;
+      }
+
+      .footer-links a {
+        color: white;
+        text-decoration: none;
+        transition: color 0.3s ease;
+      }
+
+      .footer-links a:hover {
+        color: #f8f9fa;
+      }
+
+      .social-links {
+        display: flex;
+        justify-content: center;
+        gap: 1.5rem;
+        margin-bottom: 2rem;
+      }
+
+      .social-links a {
+        color: white;
+        font-size: 1.5rem;
+        transition: transform 0.3s ease;
+      }
+
+      .social-links a:hover {
+        transform: translateY(-3px);
+      }
+
+      .copyright {
+        font-size: 0.9rem;
+        opacity: 0.8;
+      }
+
+      /* Responsive adjustments */
+      @media (max-width: 768px) {
+        .form-container {
+          padding: 2rem;
+        }
+
+        .form-title {
+          font-size: 1.7rem;
+        }
+      }
+
+      @media (max-width: 480px) {
+        .inquiry {
+          padding: 3rem 1rem;
+        }
+
+        .form-container {
+          padding: 1.5rem;
+        }
+
+        .form-title {
+          font-size: 1.5rem;
+        }
+      }
 
       /* Smooth scrolling */
       html {
@@ -399,7 +996,7 @@
     <!-- Navbar -->
     <nav class="navbar">
       <div class="nav-container">
-        <a href="#home" class="logo">Car-O</a>
+        <a href="#home" class="logo"><img src="images/carlogo.png" height="55px"/></a>
         <ul class="nav-menu">
           <li><a href="#home" class="active">Home</a></li>
           <li><a href="#services">Services</a></li>
@@ -416,38 +1013,414 @@
 
     <!-- Hero Section -->
     <section id="home" class="hero">
-        <div class="heroImg">
-            <img src="images/hero.png" alt="Car Cleaning" />
+      <div class="heroImg">
+        <img src="images/hero.png" alt="Car Cleaning" />
+      </div>
+    </section>
+
+    <!-- Pricing Section with SVG Icons -->
+    <section class="pricing">
+      <div class="container">
+        <h2 class="section-title">
+          Your Car Deserves Premium Care. Every Day.
+        </h2>
+        <p class="section-subtitle">Choose the way your car gets pampered.</p>
+
+        <div class="pricing-cards">
+          <!-- Daily Shine Plan -->
+          <div class="pricing-card">
+            <div class="plan-icon">
+              <svg
+                xmlns="http://www.w3.org/2000/svg"
+                viewBox="0 0 24 24"
+                fill="currentColor"
+              >
+                <path
+                  d="M18.92 6.01C18.72 5.42 18.16 5 17.5 5h-11c-.66 0-1.21.42-1.42 1.01L3 12v8c0 .55.45 1 1 1h1c.55 0 1-.45 1-1v-1h12v1c0 .55.45 1 1 1h1c.55 0 1-.45 1-1v-8l-2.08-5.99zM6.85 7h10.29l1.08 3.11H5.77L6.85 7zM19 17H5v-5h14v5z"
+                />
+                <circle cx="7.5" cy="14.5" r="1.5" />
+                <circle cx="16.5" cy="14.5" r="1.5" />
+              </svg>
+            </div>
+            <h3 class="plan-name">Daily Shine Plan</h3>
+            <p class="plan-price">Rs. 799<span>/month</span></p>
+            <ul class="plan-features">
+              <li class="included">Daily exterior cleaning</li>
+              <li class="included">Weekly deep interior cleaning</li>
+              <li class="included">Ideal for everyday hygiene</li>
+            </ul>
+            <button class="plan-button">Choose Plan</button>
+          </div>
+
+          <!-- On-Demand Deep Clean -->
+          <div class="pricing-card featured">
+            <div class="plan-icon">
+              <svg
+                xmlns="http://www.w3.org/2000/svg"
+                viewBox="0 0 24 24"
+                fill="currentColor"
+              >
+                <path
+                  d="M12 2C6.48 2 2 6.48 2 12s4.48 10 10 10 10-4.48 10-10S17.52 2 12 2zm0 18c-4.41 0-8-3.59-8-8s3.59-8 8-8 8 3.59 8 8-3.59 8-8 8zm4.59-12.42L10 14.17l-2.59-2.58L6 13l4 4 8-8z"
+                />
+              </svg>
+            </div>
+            <h3 class="plan-name">On-Demand Deep Clean</h3>
+            <p class="plan-price">Rs. 199<span>/service</span></p>
+            <ul class="plan-features">
+              <li class="included">Book anytime</li>
+              <li class="included">Interior & exterior deep clean</li>
+              <li class="included">Perfect before trips or after long use</li>
+            </ul>
+            <button class="plan-button featured">Choose Plan</button>
+          </div>
+
+          <!-- First Month Trial -->
+          <div class="pricing-card">
+            <div class="plan-icon">
+              <svg
+                xmlns="http://www.w3.org/2000/svg"
+                viewBox="0 0 24 24"
+                fill="currentColor"
+              >
+                <path
+                  d="M11 15h2v2h-2zm0-8h2v6h-2zm.99-5C6.47 2 2 6.48 2 12s4.47 10 9.99 10C17.52 22 22 17.52 22 12S17.52 2 11.99 2zM12 20c-4.42 0-8-3.58-8-8s3.58-8 8-8 8 3.58 8 8-3.58 8-8 8z"
+                />
+              </svg>
+            </div>
+            <h3 class="plan-name">First Month Trial</h3>
+            <p class="plan-price">Just Rs. 1</p>
+            <ul class="plan-features">
+              <li class="included">Try our full service</li>
+              <li class="included">Cancel anytime no hidden charges</li>
+              <li class="included">Trusted by 5000+ car owners</li>
+            </ul>
+            <button class="plan-button">Try Now</button>
+          </div>
         </div>
+      </div>
     </section>
 
     <!-- Locations Section -->
-<section class="locations">
-  <div class="container">
-    <h2 class="section-title">We're Already Powering Clean Cars In Your City</h2>
-    
-    <div class="location-cards">
-      <!-- Lucknow Card -->
-      <div class="location-card">
-        <h3 class="city">Lucknow</h3>
-        <p class="description">Cleaner teams across 25+ societies</p>
-        <p class="subtext">Trusted by families and professionals</p>
+    <section class="locations">
+      <div class="container">
+        <h2 class="section-title">
+          We're Already Powering Clean Cars In Your City
+        </h2>
+
+        <div class="location-cards">
+          <!-- Lucknow Card -->
+          <div class="location-card">
+            <div class="city-image">
+              <img src="images/lucknow.jpg" alt="Lucknow" />
+            </div>
+            <h3 class="city">Lucknow</h3>
+            <p class="description">Cleaner teams across 25+ societies</p>
+            <p class="subtext">Trusted by families and professionals</p>
+          </div>
+
+          <!-- NOIDA Card -->
+          <div class="location-card">
+            <div class="city-image">
+              <img src="images/noida.jpg" alt="NOIDA" />
+            </div>
+            <h3 class="city">NOIDA</h3>
+            <p class="description">
+              Expanding rapidly with tech-driven service
+            </p>
+            <p class="subtext">Now available in sectors 50, 62, 78, and more</p>
+          </div>
+        </div>
       </div>
-      
-      <!-- NOIDA Card -->
-      <div class="location-card">
-        <h3 class="city">NOIDA</h3>
-        <p class="description">Expanding rapidly with tech-driven service</p>
-        <p class="subtext">Now available in sectors 50, 62, 78, and more</p>
+    </section>
+
+    <section class="testimonials">
+      <div class="container">
+        <h2 class="section-title">Why Do Customers Stick With Car-O?</h2>
+
+        <div class="stats-grid">
+          <!-- Stat 1 -->
+          <div class="stat-card">
+            <div class="stat-icon">
+              <svg
+                xmlns="http://www.w3.org/2000/svg"
+                viewBox="0 0 24 24"
+                fill="currentColor"
+              >
+                <path
+                  d="M4 13h6c.55 0 1-.45 1-1V4c0-.55-.45-1-1-1H4c-.55 0-1 .45-1 1v8c0 .55.45 1 1 1zm0 8h6c.55 0 1-.45 1-1v-4c0-.55-.45-1-1-1H4c-.55 0-1 .45-1 1v4c0 .55.45 1 1 1zm10 0h6c.55 0 1-.45 1-1v-8c0-.55-.45-1-1-1h-6c-.55 0-1 .45-1 1v8c0 .55.45 1 1 1zM13 4v4c0 .55.45 1 1 1h6c.55 0 1-.45 1-1V4c0-.55-.45-1-1-1h-6c-.55 0-1 .45-1 1z"
+                />
+              </svg>
+            </div>
+            <p class="stat-number">5000+</p>
+            <p class="stat-label">Cars Serviced</p>
+          </div>
+
+          <!-- Stat 2 -->
+          <div class="stat-card">
+            <div class="stat-icon">
+              <svg
+                xmlns="http://www.w3.org/2000/svg"
+                viewBox="0 0 24 24"
+                fill="currentColor"
+              >
+                <path
+                  d="M11.99 2C6.47 2 2 6.48 2 12s4.47 10 9.99 10C17.52 22 22 17.52 22 12S17.52 2 11.99 2zM12 20c-4.42 0-8-3.58-8-8s3.58-8 8-8 8 3.58 8 8-3.58 8-8 8zm.5-13H11v6l5.25 3.15.75-1.23-4.5-2.67z"
+                />
+              </svg>
+            </div>
+            <p class="stat-number">92%</p>
+            <p class="stat-label">Monthly Renewals</p>
+          </div>
+
+          <!-- Stat 3 -->
+          <div class="stat-card">
+            <div class="stat-icon">
+              <svg
+                xmlns="http://www.w3.org/2000/svg"
+                viewBox="0 0 24 24"
+                fill="currentColor"
+              >
+                <path
+                  d="M17 3H7c-1.1 0-2 .9-2 2v14c0 1.1.9 2 2 2h10c1.1 0 2-.9 2-2V5c0-1.1-.9-2-2-2zm0 16H7V5h10v14zm-4.2-5.2V13h-2v3.8c0 .35-.45.53-.7.28l-1.9-1.9c-.2-.2-.2-.51 0-.71l1.9-1.9c.25-.25.7-.07.7.28V12h2v1.8c0 .35.45.53.7.28l1.9-1.9c.2-.2.2-.51 0-.71l-1.9-1.9c-.25-.25-.7-.07-.7.28z"
+                />
+              </svg>
+            </div>
+            <p class="stat-number">2-Tap</p>
+            <p class="stat-label">Booking from the App</p>
+          </div>
+
+          <!-- Stat 4 -->
+          <div class="stat-card">
+            <div class="stat-icon">
+              <svg
+                xmlns="http://www.w3.org/2000/svg"
+                viewBox="0 0 24 24"
+                fill="currentColor"
+              >
+                <path
+                  d="M12 2C6.48 2 2 6.48 2 12s4.48 10 10 10 10-4.48 10-10S17.52 2 12 2zm-1 17.93c-3.95-.49-7-3.85-7-7.93 0-.62.08-1.21.21-1.79L9 15v1c0 1.1.9 2 2 2v1.93zm6.9-2.54c-.26-.81-1-1.39-1.9-1.39h-1v-3c0-.55-.45-1-1-1H8v-2h2c.55 0 1-.45 1-1V7h2c1.1 0 2-.9 2-2v-.41c2.93 1.19 5 4.06 5 7.41 0 2.08-.8 3.97-2.1 5.39z"
+                />
+              </svg>
+            </div>
+            <p class="stat-number">100%</p>
+            <p class="stat-label">Eco-Friendly Methods</p>
+          </div>
+        </div>
+
+        <div class="testimonial-carousel-container">
+          <div class="testimonial-carousel">
+            <!-- Testimonial 1 -->
+            <div class="testimonial-card">
+              <div class="client-image">
+                <img src="images/t1.jpg" alt="Rohit" height="80px" />
+              </div>
+              <div class="quote-icon">"</div>
+              <p class="testimonial-text">
+                I haven't visited a car wash in 6 months. Car-O takes care of
+                everything.
+              </p>
+              <div class="client-info">
+                <p class="client-name">Rohit</p>
+                <p class="client-location">Lucknow</p>
+              </div>
+            </div>
+
+            <!-- Testimonial 2 -->
+            <div class="testimonial-card">
+              <div class="client-image">
+                <img src="images/t2.jpg" alt="Ankita" height="80px" />
+              </div>
+              <div class="quote-icon">"</div>
+              <p class="testimonial-text">
+                Cleaners are professional, punctual and the app is super easy to
+                use.
+              </p>
+              <div class="client-info">
+                <p class="client-name">Ankita</p>
+                <p class="client-location">Noida</p>
+              </div>
+            </div>
+
+            <!-- Testimonial 3 -->
+            <div class="testimonial-card">
+              <div class="client-image">
+                <img src="images/t3.jpg" alt="Amicril Johan" height="80px" />
+              </div>
+              <div class="quote-icon">"</div>
+              <p class="testimonial-text">
+                Our entire society switched to Car-O and we've never looked
+                back.
+              </p>
+              <div class="client-info">
+                <p class="client-name">Amicril Johan</p>
+                <p class="client-location">Society Manager</p>
+              </div>
+            </div>
+
+            <!-- Testimonial 4 -->
+            <div class="testimonial-card">
+              <div class="client-image">
+                <img
+                  src="images/t4.jpg"
+                  alt="Sector 62 Manager"
+                  height="80px"
+                />
+              </div>
+              <div class="quote-icon">"</div>
+              <p class="testimonial-text">
+                Our entire society switched to Car-O and we've never looked
+                back.
+              </p>
+              <div class="client-info">
+                <p class="client-name">Society Manager</p>
+                <p class="client-location">Sector 62</p>
+              </div>
+            </div>
+          </div>
+
+          <button
+            class="carousel-button prev"
+            aria-label="Previous testimonial"
+          >
+            ❮
+          </button>
+          <button class="carousel-button next" aria-label="Next testimonial">
+            ❯
+          </button>
+        </div>
+
+        <div class="carousel-dots">
+          <span class="dot active" data-index="0"></span>
+          <span class="dot" data-index="1"></span>
+          <span class="dot" data-index="2"></span>
+          <span class="dot" data-index="3"></span>
+        </div>
       </div>
-    </div>
-    
-    <div class="cta">
-      <p class="cta-text">Want Car-O in your society?</p>
-      <button class="cta-button">Contact Us</button>
-    </div>
-  </div>
-</section>
+    </section>
+
+    <!-- Inquiry Form Section -->
+    <section class="inquiry">
+      <div class="form-container">
+        <h2 class="form-title">Get in Touch With Us</h2>
+        <form id="enquiryForm">
+          <div class="form-row">
+            <div class="form-group">
+              <label for="name">Full Name</label>
+              <input
+                type="text"
+                id="name"
+                name="name"
+                required
+                placeholder="Enter your full name"
+              />
+            </div>
+            <div class="form-group">
+              <label for="mobile">Mobile Number</label>
+              <input
+                type="tel"
+                id="mobile"
+                name="mobile"
+                required
+                placeholder="Enter your mobile number"
+              />
+            </div>
+          </div>
+
+          <div class="form-row">
+            <div class="form-group">
+              <label for="email">Email Address</label>
+              <input
+                type="email"
+                id="email"
+                name="email"
+                required
+                placeholder="Enter your email address"
+              />
+            </div>
+            <div class="form-group">
+              <label for="vehicle">Vehicle Model</label>
+              <input
+                type="text"
+                id="vehicle"
+                name="vehicle"
+                required
+                placeholder="Enter your vehicle model"
+              />
+            </div>
+          </div>
+
+          <div class="form-group">
+            <label for="address">Service Address</label>
+            <textarea
+              id="address"
+              name="address"
+              required
+              placeholder="Enter your complete address where service is needed"
+            ></textarea>
+          </div>
+
+          <div class="form-group">
+            <label for="description">Additional Details</label>
+            <textarea
+              id="description"
+              name="description"
+              placeholder="Any special requirements or details about your vehicle"
+            ></textarea>
+          </div>
+
+          <button type="submit" class="submit-btn">Submit Inquiry</button>
+        </form>
+      </div>
+    </section>
+
+    <!-- Footer Section -->
+    <footer class="footer">
+      <div class="footer-container">
+        <a href="#home" class="footer-logo"><img src="images/carlogo.png" height="40px"/></a>
+
+        <div class="footer-links">
+          <a href="#home">Home</a>
+          <a href="#services">Services</a>
+          <a href="#about">About</a>
+          <a href="#contact">Contact</a>
+          <a href="#">Privacy Policy</a>
+          <a href="#">Terms of Service</a>
+        </div>
+
+        <p class="copyright">© 2023 Car-O. All rights reserved.</p>
+      </div>
+    </footer>
+
+    <!-- [Your existing JavaScript remains the same] -->
+
+    <script>
+      // Form submission handling
+      document
+        .getElementById("enquiryForm")
+        .addEventListener("submit", function (e) {
+          e.preventDefault();
+
+          // Get form values
+          const formData = {
+            name: document.getElementById("name").value,
+            mobile: document.getElementById("mobile").value,
+            email: document.getElementById("email").value,
+            vehicle: document.getElementById("vehicle").value,
+            address: document.getElementById("address").value,
+            description: document.getElementById("description").value,
+          };
+
+          // Here you would typically send the data to a server
+          console.log("Form submitted:", formData);
+
+          // Show success message (in a real app, you'd want something more user-friendly)
+          alert("Thank you for your inquiry! We will contact you shortly.");
+
+          // Reset the form
+          this.reset();
+        });
+    </script>
 
     <script>
       // Mobile menu toggle
@@ -490,6 +1463,64 @@
           navbar.style.background = "rgb(200, 173, 123)";
           navbar.style.boxShadow = "0 2px 20px rgba(0, 0, 0, 0.1)";
         }
+      });
+    </script>
+
+    <script>
+      document.addEventListener("DOMContentLoaded", function () {
+        const carousel = document.querySelector(".testimonial-carousel");
+        const cards = document.querySelectorAll(".testimonial-card");
+        const dots = document.querySelectorAll(".dot");
+        const prevBtn = document.querySelector(".carousel-button.prev");
+        const nextBtn = document.querySelector(".carousel-button.next");
+
+        let currentIndex = 0;
+        const cardWidth = cards[0].offsetWidth + 32; // Including gap
+
+        // Update dots and scroll position
+        function updateCarousel(index) {
+          currentIndex = index;
+
+          // Scroll to the selected card
+          carousel.scrollTo({
+            left: index * cardWidth,
+            behavior: "smooth",
+          });
+
+          // Update dots
+          dots.forEach((dot, i) => {
+            dot.classList.toggle("active", i === index);
+          });
+        }
+
+        // Next button click
+        nextBtn.addEventListener("click", () => {
+          const maxIndex = cards.length - 1;
+          const newIndex = currentIndex < maxIndex ? currentIndex + 1 : 0;
+          updateCarousel(newIndex);
+        });
+
+        // Previous button click
+        prevBtn.addEventListener("click", () => {
+          const maxIndex = cards.length - 1;
+          const newIndex = currentIndex > 0 ? currentIndex - 1 : maxIndex;
+          updateCarousel(newIndex);
+        });
+
+        // Dot navigation
+        dots.forEach((dot) => {
+          dot.addEventListener("click", () => {
+            const index = parseInt(dot.getAttribute("data-index"));
+            updateCarousel(index);
+          });
+        });
+
+        Auto - scroll(optional);
+        setInterval(() => {
+          const maxIndex = cards.length - 1;
+          const newIndex = currentIndex < maxIndex ? currentIndex + 1 : 0;
+          updateCarousel(newIndex);
+        }, 1000);
       });
     </script>
   </body>
