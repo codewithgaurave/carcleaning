@@ -1006,7 +1006,7 @@
           <li><a href="#home" class="active">Home</a></li>
           <li><a href="#services">Services</a></li>
           <li><a href="aboutus.html">About</a></li>
-          <li><a href="#why">Why Car-o</a></li>
+          <li><a href="#why">Why Car-O</a></li>
           <li><a href="#contact">Contact</a></li>
         </ul>
         <div class="hamburger" onclick="toggleMenu()">
@@ -1227,7 +1227,7 @@
                 everything.
               </p>
               <div class="client-info">
-                <p class="client-name">Rohit</p>
+                <p class="client-name">Ankita</p>
                 <p class="client-location">Lucknow</p>
               </div>
             </div>
@@ -1243,7 +1243,7 @@
                 use.
               </p>
               <div class="client-info">
-                <p class="client-name">Ankita</p>
+                <p class="client-name">Rohit</p>
                 <p class="client-location">Noida</p>
               </div>
             </div>
@@ -1315,8 +1315,8 @@
               <label for="name">Full Name</label>
               <input
                 type="text"
-                id="name"
-                name="name"
+                id="user_name"
+                name="user_name"
                 required
                 placeholder="Enter your full name"
               />
@@ -1325,8 +1325,8 @@
               <label for="mobile">Mobile Number</label>
               <input
                 type="tel"
-                id="mobile"
-                name="mobile"
+                id="user_mobile"
+                name="user_mobile"
                 required
                 placeholder="Enter your mobile number"
               />
@@ -1338,8 +1338,8 @@
               <label for="email">Email Address</label>
               <input
                 type="email"
-                id="email"
-                name="email"
+                id="user_email"
+                name="user_email"
                 required
                 placeholder="Enter your email address"
               />
@@ -1348,8 +1348,8 @@
               <label for="vehicle">Vehicle Model</label>
               <input
                 type="text"
-                id="vehicle"
-                name="vehicle"
+                id="vehicle_model"
+                name="vehicle_model"
                 required
                 placeholder="Enter your vehicle model"
               />
@@ -1359,19 +1359,19 @@
           <div class="form-group">
             <label for="address">Service Address</label>
             <textarea
-              id="address"
-              name="address"
+              id="service_address"
+              name="service_address"
               required
-              placeholder="Enter your complete address where service is needed"
+              placeholder="Enter your complete address"
             ></textarea>
           </div>
 
           <div class="form-group">
             <label for="description">Additional Details</label>
             <textarea
-              id="description"
-              name="description"
-              placeholder="Any special requirements or details about your vehicle"
+              id="additional_details"
+              name="additional_details"
+              placeholder="Any special requirements"
             ></textarea>
           </div>
 
@@ -1379,6 +1379,16 @@
         </form>
       </div>
     </section>
+
+    <!-- Success/Error Messages -->
+    <div id="successMessage" class="success-message">
+      Thank you! Your inquiry has been sent successfully. We will contact you
+      shortly.
+    </div>
+    <div id="errorMessage" class="error-message">
+      Failed to send your inquiry. Please check your internet connection and try
+      again.
+    </div>
 
     <!-- Footer Section -->
     <footer class="footer">
@@ -1430,34 +1440,6 @@
       function closeModal() {
         document.getElementById("pdfModalContainer").innerHTML = "";
       }
-    </script>
-
-    <script>
-      // Form submission handling
-      document
-        .getElementById("enquiryForm")
-        .addEventListener("submit", function (e) {
-          e.preventDefault();
-
-          // Get form values
-          const formData = {
-            name: document.getElementById("name").value,
-            mobile: document.getElementById("mobile").value,
-            email: document.getElementById("email").value,
-            vehicle: document.getElementById("vehicle").value,
-            address: document.getElementById("address").value,
-            description: document.getElementById("description").value,
-          };
-
-          // Here you would typically send the data to a server
-          console.log("Form submitted:", formData);
-
-          // Show success message (in a real app, you'd want something more user-friendly)
-          alert("Thank you for your inquiry! We will contact you shortly.");
-
-          // Reset the form
-          this.reset();
-        });
     </script>
 
     <script>
@@ -1561,6 +1543,76 @@
         }, 1000);
       });
     </script>
+
+<!-- Load EmailJS SDK -->
+<script src="https://cdn.jsdelivr.net/npm/@emailjs/browser@3/dist/email.min.js"></script>
+
+<script>
+    document.addEventListener("DOMContentLoaded", function() {
+        // Initialize EmailJS with your public key
+        emailjs.init('1-EBSEL3oWi9mputS'); // Replace with your actual public key
+        
+        const form = document.getElementById("enquiryForm");
+        const successMessage = document.getElementById("successMessage");
+        const errorMessage = document.getElementById("errorMessage");
+        
+        // Hide messages initially
+        if (successMessage) successMessage.style.display = 'none';
+        if (errorMessage) errorMessage.style.display = 'none';
+
+        form.addEventListener("submit", function(e) {
+            e.preventDefault();
+            
+            // Show loading state
+            const submitBtn = form.querySelector('button[type="submit"]');
+            const originalBtnText = submitBtn.innerHTML;
+            submitBtn.disabled = true;
+            submitBtn.innerHTML = 'Sending...';
+            
+            // Prepare the template parameters - ensure these match your EmailJS template variables
+            const templateParams = {
+                user_name: form.querySelector("#user_name").value,
+                user_email: form.querySelector("#user_email").value,
+                user_mobile: form.querySelector("#user_mobile").value,
+                vehicle_model: form.querySelector("#vehicle_model").value,
+                service_address: form.querySelector("#service_address").value,
+                additional_details: form.querySelector("#additional_details").value || 'No additional details provided'
+            };
+
+            console.log("Sending email with data:", templateParams);
+            
+            // Send the email - verify these IDs match your EmailJS setup
+            emailjs.send('service_lthu4wq', 'template_kkdkph5', templateParams)
+                .then(function(response) {
+                    console.log('SUCCESS!', response.status, response.text);
+                    if (successMessage) {
+                        successMessage.style.display = 'block';
+                        form.reset();
+                        
+                        // Hide success message after 5 seconds
+                        setTimeout(() => {
+                            successMessage.style.display = 'none';
+                        }, 5000);
+                    }
+                }, function(error) {
+                    console.log('FAILED...', error);
+                    if (errorMessage) {
+                        errorMessage.style.display = 'block';
+                        
+                        // Hide error message after 5 seconds
+                        setTimeout(() => {
+                            errorMessage.style.display = 'none';
+                        }, 5000);
+                    }
+                })
+                .finally(() => {
+                    submitBtn.disabled = false;
+                    submitBtn.innerHTML = originalBtnText;
+                });
+        });
+    });
+</script>
+
     <!-- Bootstrap JS (Place before closing </body>) -->
     <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/js/bootstrap.bundle.min.js"></script>
   </body>
